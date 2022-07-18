@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_many :post_images, dependent: :destroy#User モデルに PostImage モデルを関連付ける
          
-  has_one_attached :profile_image
+         has_many :post_comments, dependent: :destroy#1:Nの関係（アソシエーション）を、機能として実装。Userモデルに、PostCommentモデルとの1:Nの関係も実装
+         has_one_attached :profile_image
+         has_many :favorites, dependent: :destroy#いいね機能Userモデルを設定
 def get_profile_image(width, height)
   unless profile_image.attached?
     file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-
-    before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!, except: [:top]#ログイン認証が成功していないとトップページ以外の画面（ログインと新規登録は除く）は表示できない仕様
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
     homes_about_path #routes passを使う
